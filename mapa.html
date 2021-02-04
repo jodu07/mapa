@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+
+    <link
+
+      rel="stylesheet"
+
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+
+    />
+
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+  </head>
+
+  <style>
+
+    #map {​​​​
+
+      width: 100%;
+
+      height: 580px;
+
+      box-shadow: 5px 5px 5px #888;
+
+    }​​​​
+
+  </style>   <body>
+
+    <div id="map"></div>
+
+    <script>
+
+      var map = L.map("map", {​​​​
+
+        center: [1.6200121, -75.6044208],
+
+        zoom: 15,
+
+      }​​​​);       var osm = L.tileLayer(
+
+        "https://{​​​​s}​​​​.tile.openstreetmap.org/{​​​​z}​​​​/{​​​​x}​​​​/{​​​​y}​​​​.png",
+
+        {​​​​
+
+          attribution:
+
+            '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>' +
+
+            "contributors",
+
+          maxZoom: 25,
+
+        }​​​​
+
+      ).addTo(map);       var circle = L.circle([1.615115, -75.613793], 500, {​​​​
+
+        color: "violet",
+
+        fillOpacity: 0.5,
+
+      }​​​​).addTo(map);       circle.bindPopup("Alcaldia de Florencia Caquetá ");
+
+      var marker = L.marker([1.615115, -75.613793], {​​​​
+
+        draggable: true,
+
+      }​​​​)
+
+        .addTo(map)
+
+        .bindPopup("Alcaldia de Florencia")
+
+        .openPopup();       var marker = L.marker([1.6200121, -75.6044208], {​​​​
+
+        draggable: true,
+
+      }​​​​)
+
+        .addTo(map)
+
+        .bindPopup("Universidad de la Amazonia")
+
+        .openPopup();       L.control.scale().addTo(map);       var polygon = L.polygon([
+
+        [1.615194, -75.613754],
+
+        [1.61447, -75.613562],
+
+        [1.614696, -75.612773],
+
+        [1.615439, -75.613005],
+
+      ])
+
+        .addTo(map)
+
+        .bindPopup("Parque Santander");       var marker = L.marker([1.614923, -75.613243], {​​​​
+
+        draggable: true,
+
+      }​​​​)
+
+        .addTo(map)
+
+        .bindPopup("Parque Santander")
+
+        .openPopup();
+
+var pointA = new L.LatLng(1.6200121, -75.6044208);
+
+    var pointB = new L.LatLng(1.621929, -75.603568);
+
+    var latlngs = [pointA, pointB];
+
+    var distance = map.distance(pointA, pointB);
+
+    var distancems = distance / 1000;     var polyline = L.polyline(       latlngs, {​​​​ color: 'red' }​​​​     )       .addTo(map)       .bindPopup('Vía Vivienda-Universidad ' + distancems.toFixed(3) + ' kms');     L.control.scale().addTo(map);
+
+    </script>
+
+  </body>
+
+</html>
+
